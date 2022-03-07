@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.draftEditor {
+  min-height: 300px;
+  max-height: max-content;
+}
