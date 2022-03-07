@@ -2,7 +2,7 @@ const express = require('express');
 const JournalModel = require('../models/Journal');
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+router.post('/additem', async (req, res) => {
   try {
     const newItem = new JournalModel(req.body);
     await newItem.save();

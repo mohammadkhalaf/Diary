@@ -3,6 +3,7 @@ const dotenv = require('dotenv').config();
 const connectCB = require('./db/db');
 const journal = require('./routes/journal');
 const app = express();
+app.use(express.json());
 const PORT = process.env.PORT || 5000;
 app.get('/', (req, res) => {
   res.send('hello');
