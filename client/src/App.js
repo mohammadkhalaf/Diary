@@ -2,8 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Add from './Pages/Add';
 import HomePage from './Pages/HomePage';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import DetailPage from './Pages/DetailPage';
 function App() {
   return (
     <div>
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path='/home' element={<HomePage />} />
           <Route path='/add' element={<Add />} />
+          <Route path='/journal/:id' element={<DetailPage />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
