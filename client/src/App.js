@@ -16,8 +16,8 @@ function App() {
           <Route path='/add' element={<Add />} />
           <Route path='/journal/:id' element={<DetailPage />} />
         </Routes>
+        <ToastContainer />
       </BrowserRouter>
-      <ToastContainer />
     </div>
   );
 }
