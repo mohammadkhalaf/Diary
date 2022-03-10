@@ -8,17 +8,19 @@ const Layout = (props) => {
     setShowSidebar(!showSidebar);
   };
   return (
-    <div className='layout flex w-ful'>
+    <div className='layout flex w-ful h-full'>
       {showSidebar && (
         <div className='sidebar'>
           <Sidebar />
         </div>
       )}
-      <div className='w-full'>
+      <div className='w-full h-full'>
         <div className='header bg-primary h-20 w-full flex items-center pl-5'>
           <GiHamburgerMenu color='gray' size={35} onClick={clickHandler} />
         </div>
-        <div className='content'>{props.children}</div>
+        <div className='content max-h-[80vh] overflow-y-auto'>
+          {props.children}
+        </div>
       </div>
     </div>
   );

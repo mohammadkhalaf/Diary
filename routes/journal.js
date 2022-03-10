@@ -23,7 +23,7 @@ router.get('/getjournal', async (req, res) => {
 });
 router.get('/getsingleitem/:id', async (req, res) => {
   const { id } = req.params;
-  console.log(id);
+
   try {
     const data = await JournalModel.findById(id);
     console.log(data);

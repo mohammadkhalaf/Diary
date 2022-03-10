@@ -14,6 +14,7 @@ const HomePage = () => {
     setLoading(true);
     try {
       const items = await axios.get('/api/journal/getjournal');
+
       setItems(items.data);
       setLoading(false);
     } catch (err) {

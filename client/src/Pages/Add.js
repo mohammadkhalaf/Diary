@@ -6,6 +6,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import Layout from '../components/Layout';
 import Loader from '../components/Loader';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Add = () => {
   const [editorState, setEditorState] = useState(() =>
@@ -14,6 +15,7 @@ const Add = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     console.log();
   }, [editorState]);
@@ -29,6 +31,7 @@ const Add = () => {
       await axios.post('/api/journal/additem', payload);
       setLoading(false);
       toast('You have added successfully', 'success');
+      navigate('/home');
     } catch (err) {
       console.log(err);
       alert('wrong');
