@@ -23,14 +23,25 @@ router.get('/getjournal', async (req, res) => {
 });
 router.get('/getsingleitem/:id', async (req, res) => {
   const { id } = req.params;
-
+  try {
+    const data = await JournalModel.find();
+    const journals = data.filter((obj) => obj.postedBy === id);
+    // console.log(journals.length);
+    res.send(journals);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+router.get('/detailpage/:id', async (req, res) => {
+  const { id } = req.params;
   try {
     const data = await JournalModel.findById(id);
-    console.log(data);
-
+    if (!data) {
+      return res.status(404).send('Item can not be found');
+    }
     res.send(data);
   } catch (err) {
-    res.status(400).send({ msg: err });
+    res.status(400).send(err);
   }
 });
 module.exports = router;

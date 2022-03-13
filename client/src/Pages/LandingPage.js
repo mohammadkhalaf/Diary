@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Login from '../components/LoginForm';
 import Register from '../components/Register';
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
   const [loginForm, setLoginForm] = useState(false);
   const [registerForm, setRegisterForm] = useState(false);
+  const navigate = useNavigate();
+
   return (
     <>
       <div className='h-screen flex items-center'>

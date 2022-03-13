@@ -4,7 +4,7 @@ const connectCB = require('./db/db');
 const journal = require('./routes/journal');
 const users = require('./routes/user');
 const app = express();
-app.use(express.json());
+app.use(express.json({ extended: false }));
 const PORT = process.env.PORT || 5000;
 app.get('/', (req, res) => {
   res.send('hello');

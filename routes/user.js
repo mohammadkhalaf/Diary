@@ -7,38 +7,38 @@ const router = express.Router();
 router.post('/register', async (req, res) => {
   const { email, name, password } = req.body;
   try {
-    // let newUser = findOne({ email });
-    // if (newUser) {
-    //   return res.status(400).json({ msg: 'User already exist' });
-    // }
-    // newUser = new UserModel({
-    //   name,
-    //   email,
-    //   password: await bcrypt.hash(password, 10),
-    // });
-    // await newUser.save();
+    let user = await UserModel.findOne({ email });
+    if (user) {
+      return res.status(400).json({ msg: 'User is already exist' });
+    }
+    const salt = await bcrypt.genSalt(10);
 
-    const newUser = new UserModel(req.body);
-    await newUser.save();
+    user = new UserModel({
+      name,
+      password: await bcrypt.hash(password, salt),
+      email,
+    });
+    await user.save();
   } catch (err) {
-    res.status(500).send({ msg: err });
+    res.send({ msg: err });
   }
 });
 
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
+  console.log(req.body);
   try {
-    let newUser = findOne({ email });
-    if (!newUser) {
-      return res.status(400).json({ msg: 'You are not registered' });
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      return res.status(400).send('Invalid credentials');
     }
-    const isMatched = await bcrypt.compare(password, newUser.password);
-    if (!isMatched) {
-      return res.status(400).json({ msg: 'invalid credentials' });
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).send('Passwords do not match');
     }
-    res.send('You are logged in');
+    res.send(user);
   } catch (err) {
-    res.status(500).send({ msg: err });
+    console.log(err);
   }
 });
 

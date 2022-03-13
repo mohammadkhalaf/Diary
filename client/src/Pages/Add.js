@@ -16,6 +16,9 @@ const Add = () => {
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user);
+  console.log(user);
   useEffect(() => {
     console.log();
   }, [editorState]);
@@ -26,7 +29,7 @@ const Add = () => {
         title,
         description,
         content: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
-        postedBy: 'user',
+        postedBy: user._id,
       };
       await axios.post('/api/journal/additem', payload);
       setLoading(false);

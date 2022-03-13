@@ -15,7 +15,7 @@ const JournalSchema = new Schema(
       required: true,
     },
     postedBy: {
-      type: String,
+      type: Object,
     },
   },
   {

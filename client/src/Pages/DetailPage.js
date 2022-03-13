@@ -15,7 +15,7 @@ const DetailPage = () => {
   const getData = async () => {
     setLoading(true);
     try {
-      const items = await axios.get(`/api/journal/getsingleitem/${id}`);
+      const items = await axios.get(`/api/journal/detailpage/${id}`);
       setItem(items.data);
 
       setLoading(false);

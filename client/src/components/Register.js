@@ -6,9 +6,8 @@ const Register = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [loading, setLoading] = useState(false);
+
   const register = async () => {
-    setLoading(true);
     try {
       const payload = {
         email,
@@ -16,17 +15,18 @@ const Register = () => {
         name,
       };
       await axios.post('/api/users/register', payload);
-      toast('You are successfully registered');
-      setLoading(false);
     } catch (err) {
-      console.log(err);
-      toast('Something went wrong');
+      toast('You are already registered');
     }
   };
   const submitHandler = (e) => {
     e.preventDefault();
     if (name && password && email) {
       register();
+      toast('You have successfully registered, please login ');
+      setName('');
+      setEmail('');
+      setPassword('');
     }
   };
   return (
@@ -42,6 +42,7 @@ const Register = () => {
           className='border-2 h-10 w-full border-gray-300 px-5 bg-transparent mb-5 text-white'
           placeholder='Name'
           onChange={(e) => setName(e.target.value)}
+          required
         />
         <input
           type='email'
@@ -49,6 +50,7 @@ const Register = () => {
           className='border-2 h-10 w-full border-gray-300 px-5 bg-transparent mb-5 text-white'
           placeholder='Email'
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
           type='password'
@@ -56,6 +58,7 @@ const Register = () => {
           className='border-2 h-10 w-full border-gray-300 px-5 bg-transparent mb-5 text-white'
           placeholder='password'
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
         <button type='submit' className='bg-gray-200 px-10 py-4 pointer'>
           Register
