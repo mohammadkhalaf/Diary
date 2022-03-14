@@ -16,13 +16,10 @@ const HomePage = () => {
     setLoading(true);
     try {
       const items = await axios.get(`/api/journal/getsingleitem/${user._id}`);
-      console.log(items);
 
       setItems(items.data);
       setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
   useEffect(() => {
     getData();
@@ -57,7 +54,7 @@ const HomePage = () => {
             )
             .map((item) => {
               return (
-                <div className='shadow-md p-3 cursor-pointer'>
+                <div className='shadow-md p-3 cursor-pointer' key={item._id}>
                   <h1
                     className='text-primary text-lg font-semibold capitalize'
                     onClick={() => navigate(`/journal/${item._id}`)}

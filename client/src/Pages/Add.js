@@ -17,11 +17,10 @@ const Add = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log(user);
-  console.log(user);
-  useEffect(() => {
-    console.log();
-  }, [editorState]);
+
+  // useEffect(() => {
+  //   console.log();
+  // }, [editorState]);
   const onSave = async () => {
     setLoading(true);
     try {

@@ -26,7 +26,7 @@ const Sidebar = () => {
             <Link
               to={`${item.path}`}
               className='text-gray-300 hover:bg-gray-50 pl-10 py-5 hover:text-gray-700'
-              key={index}
+              key={item.index}
             >
               {item.title}
             </Link>

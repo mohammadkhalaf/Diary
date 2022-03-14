@@ -8,11 +8,7 @@ import DetailPage from './Pages/DetailPage';
 import LandingPage from './Pages/LandingPage';
 function App() {
   const user = localStorage.getItem('user');
-  if (user) {
-    console.log(true);
-  } else {
-    console.log(false);
-  }
+
   return (
     <div>
       <BrowserRouter>
