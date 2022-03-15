@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { EditorState, convertToRaw } from 'draft-js';
-import axios from 'axios';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import axios from 'axios';
+
 import Layout from '../components/Layout';
 import Loader from '../components/Loader';
 import { toast } from 'react-toastify';
@@ -18,9 +19,9 @@ const Add = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
 
-  // useEffect(() => {
-  //   console.log();
-  // }, [editorState]);
+  useEffect(() => {
+    console.log(editorState);
+  }, [editorState]);
   const onSave = async () => {
     setLoading(true);
     try {

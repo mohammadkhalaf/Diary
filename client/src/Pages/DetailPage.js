@@ -11,7 +11,7 @@ const DetailPage = () => {
   const [loading, setLoading] = useState(false);
   const [item, setItem] = useState(null);
   const { id } = useParams();
-  console.log(id);
+
   const getData = async () => {
     setLoading(true);
     try {
@@ -19,22 +19,18 @@ const DetailPage = () => {
       setItem(items.data);
 
       setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
   useEffect(() => {
     getData();
   }, []);
-  console.log(item);
+
   return (
     <>
       <Layout>
         {loading ? (
           <Loader />
         ) : (
-          // <div>{ReactHtmlParser(draftToHtml(JSON.parse(item.content)))}</div>
-
           <div className='p-5'>
             <h1 className='my-3 text-2xl font-semibold capitalize'>
               {' '}

@@ -54,15 +54,15 @@ const HomePage = () => {
             )
             .map((item) => {
               return (
-                <div className='shadow-md p-3 cursor-pointer' key={item._id}>
+                <div className='shadow-md p-3 ' key={item._id}>
                   <h1
-                    className='text-primary text-lg font-semibold capitalize'
+                    className='text-primary text-lg font-semibold capitalize cursor-pointer'
                     onClick={() => navigate(`/journal/${item._id}`)}
                   >
                     {item.title}
                   </h1>
                   <p>{item.description}</p>
-                  <div className='flex justify-between items-center'>
+                  <div className='flex justify-between items-center lg:flex-col'>
                     <div className='flex  mt-2'>
                       <button
                         className='px-3 py-2 mr-4 bg-red rounded text-white pointer'
@@ -74,12 +74,9 @@ const HomePage = () => {
                         Edit
                       </button>
                     </div>
-                    <span className='text-gray-500 text-sm'>
+                    <span className='text-gray-500 text-sm lg:mt-5'>
                       at {item.createdAt.slice(0, 10)}
                     </span>
-                    {/* <span className='text-gray-500 text-sm'>
-                      postedBy {item.postedBy}
-                    </span> */}
                   </div>
                 </div>
               );

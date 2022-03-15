@@ -22,9 +22,10 @@ const Login = () => {
       navigate('/home');
       setLoading(false);
     } catch (err) {
-      toast('Something went wrong');
+      toast('Invalid credentials');
     }
   };
+  useEffect(() => {});
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -32,6 +33,12 @@ const Login = () => {
       login();
     }
   };
+  useEffect(() => {
+    return () => {
+      setPassword('');
+      setEmail('');
+    };
+  }, []);
 
   return (
     <>

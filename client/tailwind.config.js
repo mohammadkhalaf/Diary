@@ -5,6 +5,7 @@ module.exports = {
       colors: {
         primary: '#1F2D56 ',
         red: '#ae2012',
+        blue: '#38C6F3',
       },
     },
     screens: {

@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Add from './Pages/Add';
 import HomePage from './Pages/HomePage';
-
+import Error from './Pages/Error';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DetailPage from './Pages/DetailPage';
@@ -23,6 +23,7 @@ function App() {
             path='/journal/:id'
             element={user ? <DetailPage /> : <Navigate to='/' />}
           />
+          <Route path='*' element={<Error />} />
         </Routes>
         <ToastContainer />
       </BrowserRouter>
