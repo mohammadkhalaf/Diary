@@ -42,9 +42,15 @@ router.get('/detailpage/:id', async (req, res) => {
     res.status(400).send(err);
   }
 });
-router.put('/edit/:id', async (req, res) => {
-  const { id } = req.params;
-  console.log(id);
-  console.log('s');
+router.post('/edit', async (req, res) => {
+  try {
+    const update = await JournalModel.findById(req.body.id);
+    if (updated) {
+      console.log(true);
+    }
+    res.send('successfully');
+  } catch (err) {
+    console.log(err);
+  }
 });
 module.exports = router;

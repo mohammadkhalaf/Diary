@@ -3,13 +3,6 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
-  const navItems = [
-    { title: 'Home', path: '/home' },
-    { title: 'Add', path: '/add' },
-    { title: 'Edit', path: '/edit' },
-    { title: 'Profile', path: '/profile' },
-    { title: 'Logout', path: '/logout' },
-  ];
   const navigate = useNavigate();
   const logoutHandler = () => {
     localStorage.removeItem('user');
@@ -33,12 +26,7 @@ const Sidebar = () => {
         >
           Add
         </Link>
-        <Link
-          to='/edit'
-          className='text-gray-300 hover:bg-gray-50 pl-10 py-5 hover:text-gray-700'
-        >
-          Edit
-        </Link>
+
         <Link
           onClick={logoutHandler}
           to='/'

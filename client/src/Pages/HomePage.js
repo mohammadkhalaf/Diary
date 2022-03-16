@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react/cjs/react.development';
 import Layout from '../components/Layout';
 import Loader from '../components/Loader';
+import { toast } from 'react-toastify';
 
 const HomePage = () => {
   const [loading, setLoading] = useState(false);
@@ -19,7 +20,9 @@ const HomePage = () => {
 
       setItems(items.data);
       setLoading(false);
-    } catch (err) {}
+    } catch (err) {
+      toast('Something went wrong');
+    }
   };
   useEffect(() => {
     getData();

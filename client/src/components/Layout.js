@@ -3,7 +3,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import Sidebar from './Sidebar';
 
 const Layout = (props) => {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
 
   const clickHandler = () => {

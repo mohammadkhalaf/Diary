@@ -22,14 +22,11 @@ const Editpage = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const { id } = useParams();
 
-  useEffect(() => {
-    console.log(editorState);
-  }, [editorState]);
   const getData = async () => {
     setLoading(true);
     try {
       const items = await axios.get(`/api/journal/detailpage/${id}`);
-      console.log(items.data);
+
       setTitle(items.data.title);
       setDescription(items.data.description);
       setEditorState(() =>
@@ -51,14 +48,14 @@ const Editpage = () => {
         title,
         description,
         content: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
+        id: id,
       };
-      await axios.post(`/api/journal/edit/${id}`, payload);
+
+      await axios.post(`/api/journal/edit`, payload);
       setLoading(false);
       toast('You have edited successfully');
       navigate('/home');
     } catch (err) {
-      console.log(err);
-
       toast('Something went wrong', 'danger');
     }
   };

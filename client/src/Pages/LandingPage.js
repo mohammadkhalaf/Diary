@@ -18,8 +18,12 @@ const LandingPage = () => {
 
   return (
     <>
-      <div className='h-screen flex items-center lg:flex-col'>
-        <div className='w-1/2 px-10 space-y-5'>
+      <div className='h-screen flex items-center sm:flex-col'>
+        <div
+          className={`w-1/2 px-10 space-y-5 sm:w-screen ${
+            (loginForm || registerForm) && 'sm:hidden '
+          } `}
+        >
           <h1 className='text-8xl text-primary capitalize mb-5'>Mo Journal</h1>
           <p className='text-lg'>
             <span className='block font-semibold text-4xl'>
@@ -48,18 +52,19 @@ const LandingPage = () => {
             </button>
           </div>
         </div>
-        <div className='w-1/2'>
+        <div className='w-1/2 sm:w-screen'>
           {!loginForm && !registerForm && (
             <lottie-player
               src='https://assets9.lottiefiles.com/packages/lf20_LQu2Ly.json'
               background='transparent'
+              className='sm:w-screen'
               speed='1'
               loop
               autoplay
             ></lottie-player>
           )}
           {loginForm && (
-            <div className='relative'>
+            <div className='relative sm:ml-0'>
               <span
                 className='absolute top-2 right-3 cursor-pointer'
                 onClick={() => setLoginForm(false)}
