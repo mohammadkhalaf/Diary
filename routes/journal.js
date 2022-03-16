@@ -42,4 +42,9 @@ router.get('/detailpage/:id', async (req, res) => {
     res.status(400).send(err);
   }
 });
+router.put('/edit/:id', async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  console.log('s');
+});
 module.exports = router;

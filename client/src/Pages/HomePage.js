@@ -70,7 +70,10 @@ const HomePage = () => {
                       >
                         Delete
                       </button>
-                      <button className='px-5 py-2 bg-primary rounded text-white pointer'>
+                      <button
+                        className='px-5 py-2 bg-primary rounded text-white pointer'
+                        onClick={() => navigate(`/edit/${item._id}`)}
+                      >
                         Edit
                       </button>
                     </div>

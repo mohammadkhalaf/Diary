@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+  Navigate,
+} from 'react-router-dom';
 import Add from './Pages/Add';
 import HomePage from './Pages/HomePage';
 import Error from './Pages/Error';
@@ -6,9 +12,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DetailPage from './Pages/DetailPage';
 import LandingPage from './Pages/LandingPage';
-function App() {
-  const user = localStorage.getItem('user');
+import Editpage from './Pages/Editpage';
 
+function App() {
   return (
     <div>
       <BrowserRouter>
@@ -16,12 +22,35 @@ function App() {
           <Route path='/' element={<LandingPage />} />
           <Route
             path='/home'
-            element={user ? <HomePage /> : <Navigate to='/' />}
+            element={
+              <ProtectedRoutes>
+                <HomePage />
+              </ProtectedRoutes>
+            }
           />
-          <Route path='/add' element={user ? <Add /> : <Navigate to='/' />} />
+          <Route
+            path='/add'
+            element={
+              <ProtectedRoutes>
+                <Add />
+              </ProtectedRoutes>
+            }
+          />
           <Route
             path='/journal/:id'
-            element={user ? <DetailPage /> : <Navigate to='/' />}
+            element={
+              <ProtectedRoutes>
+                <DetailPage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path='/edit/:id'
+            element={
+              <ProtectedRoutes>
+                <Editpage />
+              </ProtectedRoutes>
+            }
           />
           <Route path='*' element={<Error />} />
         </Routes>
@@ -32,3 +61,10 @@ function App() {
 }
 
 export default App;
+export const ProtectedRoutes = ({ children }) => {
+  if (localStorage.getItem('user')) {
+    return children;
+  } else {
+    return <Navigate to='/' />;
+  }
+};

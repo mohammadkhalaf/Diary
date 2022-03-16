@@ -15,6 +15,8 @@ const Register = () => {
         name,
       };
       await axios.post('/api/users/register', payload);
+
+      toast('You have successfully registered, please login ');
     } catch (err) {
       toast('You are already registered');
     }
@@ -23,7 +25,7 @@ const Register = () => {
     e.preventDefault();
     if (name && password && email) {
       register();
-      toast('You have successfully registered, please login ');
+
       setName('');
       setEmail('');
       setPassword('');
