@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import axios from 'axios';
 import Loader from '../components/Loader';
-import ReactHtmlParser from 'react-html-parser';
+// import ReactHtmlParser from 'react-html-parser';
 import draftToHtml from 'draftjs-to-html';
 
 const DetailPage = () => {
@@ -37,8 +37,8 @@ const DetailPage = () => {
               {item !== null && item.title}{' '}
             </h1>
 
-            {item !== null &&
-              ReactHtmlParser(draftToHtml(JSON.parse(item?.content)))}
+            {/* {item !== null &&
+              ReactHtmlParser(draftToHtml(JSON.parse(item?.content)))} */}
           </div>
         )}
       </Layout>
