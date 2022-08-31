@@ -19,9 +19,9 @@ const Add = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
 
-  // useEffect(() => {
-  //   console.log(editorState);
-  // }, [editorState]);
+  useEffect(() => {
+    console.log(convertToRaw(editorState.getCurrentContent()));
+  }, [editorState]);
   const onSave = async () => {
     setLoading(true);
     try {
@@ -29,12 +29,12 @@ const Add = () => {
         title,
         description,
         content: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
-        postedBy: user._id,
+        postedBy: ' user._id',
       };
       await axios.post('/api/journal/additem', payload);
       toast('You have added successfully');
       setLoading(false);
-      navigate('/home');
+      // navigate('/home');
     } catch (err) {
       console.log(err);
       alert('wrong');

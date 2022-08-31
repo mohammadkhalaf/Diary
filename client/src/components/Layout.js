@@ -20,7 +20,7 @@ const Layout = (props) => {
         <div className='header bg-primary h-20 w-full flex justify-between items-center pl-5'>
           <GiHamburgerMenu color='gray' size={35} onClick={clickHandler} />
           <div className='mr-5'>
-            <span className='capitalize text-white'>Welcome {user.name}</span>
+            <span className='capitalize text-white'>Welcome {'user.name'}</span>
           </div>
         </div>
 

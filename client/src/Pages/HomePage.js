@@ -16,7 +16,7 @@ const HomePage = () => {
   const getData = async () => {
     setLoading(true);
     try {
-      const items = await axios.get(`/api/journal/getsingleitem/${user._id}`);
+      const items = await axios.get(`/api/journal/getjournal`, {});
 
       setItems(items.data);
       setLoading(false);
@@ -51,42 +51,37 @@ const HomePage = () => {
       )}
       {items.length > 0 && (
         <div className='grid grid-cols-2 sm:grid-cols-1 gap-5 mx-20 sm:mx-5 my-10'>
-          {items
-            .filter((item) =>
-              item.title.toLowerCase().includes(term.toLowerCase())
-            )
-            .map((item) => {
-              return (
-                <div className='shadow-md p-3 ' key={item._id}>
-                  <h1
-                    className='text-primary text-lg font-semibold capitalize cursor-pointer'
-                    onClick={() => navigate(`/journal/${item._id}`)}
-                  >
+          {items.map((item) => {
+            return (
+              <div className='shadow-md p-3 ' key={item._id}>
+                <div onClick={() => navigate(`/journal/${item._id}`)}>
+                  <h1 className='text-primary text-lg font-semibold capitalize cursor-pointer'>
                     {item.title}
                   </h1>
                   <p>{item.description}</p>
-                  <div className='flex justify-between items-center lg:flex-col'>
-                    <div className='flex  mt-2'>
-                      <button
-                        className='px-3 py-2 mr-4 bg-red rounded text-white pointer'
-                        onClick={removeHandler}
-                      >
-                        Delete
-                      </button>
-                      <button
-                        className='px-5 py-2 bg-primary rounded text-white pointer'
-                        onClick={() => navigate(`/edit/${item._id}`)}
-                      >
-                        Edit
-                      </button>
-                    </div>
-                    <span className='text-gray-500 text-sm lg:mt-5'>
-                      at {item.createdAt.slice(0, 10)}
-                    </span>
-                  </div>
                 </div>
-              );
-            })}
+                <div className='flex justify-between items-center lg:flex-col'>
+                  <div className='flex  mt-2'>
+                    <button
+                      className='px-3 py-2 mr-4 bg-red rounded text-white pointer'
+                      onClick={removeHandler}
+                    >
+                      Delete
+                    </button>
+                    <button
+                      className='px-5 py-2 bg-primary rounded text-white pointer'
+                      // onClick={() => navigate(`/edit/${item._id}`)}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                  <span className='text-gray-500 text-sm lg:mt-5'>
+                    created at {item.createdAt.slice(0, 10)}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
     </Layout>

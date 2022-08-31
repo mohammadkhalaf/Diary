@@ -23,25 +23,25 @@ function App() {
           <Route
             path='/home'
             element={
-              <ProtectedRoutes>
-                <HomePage />
-              </ProtectedRoutes>
+              <HomePage />
+              // <ProtectedRoutes>
+              // </ProtectedRoutes>
             }
           />
           <Route
             path='/add'
             element={
-              <ProtectedRoutes>
-                <Add />
-              </ProtectedRoutes>
+              <Add />
+              // <ProtectedRoutes>
+              // </ProtectedRoutes>
             }
           />
           <Route
             path='/journal/:id'
             element={
-              <ProtectedRoutes>
-                <DetailPage />
-              </ProtectedRoutes>
+              <DetailPage />
+              // <ProtectedRoutes>
+              // </ProtectedRoutes>
             }
           />
           <Route

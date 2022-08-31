@@ -6,30 +6,31 @@ router.post('/additem', async (req, res) => {
   try {
     const newItem = new JournalModel(req.body);
     await newItem.save();
+    res.send('add intem');
   } catch (err) {
     res.status(400).send({ msg: err });
   }
 });
-// router.get('/getjournal', async (req, res) => {
-//   try {
-//     const data = await JournalModel.find();
-
-//     res.send(data);
-//   } catch (err) {
-//     res.status(400).send({ msg: err });
-//   }
-// });
-router.get('/getsingleitem/:id', async (req, res) => {
-  const { id } = req.params;
+router.get('/getjournal', async (req, res) => {
   try {
     const data = await JournalModel.find();
-    const journals = data.filter((obj) => obj.postedBy === id);
-    // console.log(journals.length);
-    res.send(journals);
+
+    res.send(data);
   } catch (err) {
-    res.status(400).send(err);
+    res.status(400).send({ msg: err });
   }
 });
+// router.get('/getsingleitem/:id', async (req, res) => {
+//   const { id } = req.params;
+//   try {
+//     const data = await JournalModel.find();
+//     const journals = data.filter((obj) => obj.postedBy === id);
+//     // console.log(journals.length);
+//     res.send(journals);
+//   } catch (err) {
+//     res.status(400).send(err);
+//   }
+// });
 router.get('/detailpage/:id', async (req, res) => {
   const { id } = req.params;
   try {
