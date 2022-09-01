@@ -14,11 +14,12 @@ const Register = () => {
         password,
         name,
       };
-      await axios.post('/api/users/register', payload);
+      const response = await axios.post('/api/users/register', payload);
+      console.log(response);
 
       toast('You have successfully registered, please login ');
     } catch (err) {
-      toast('You are already registered');
+      toast(err.response.data.msg);
     }
   };
   const submitHandler = (e) => {

@@ -44,7 +44,7 @@ const HomePage = () => {
           onChange={(e) => setTerm(e.target.value)}
         />
       </div>
-      {items.length === 0 && (
+      {items.length === 0 && !loading && (
         <h2 className='text-center mt-10 text-gray-500 capitalize text-xl'>
           You have not added notes yet
         </h2>
