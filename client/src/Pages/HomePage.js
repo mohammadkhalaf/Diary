@@ -16,7 +16,7 @@ const HomePage = () => {
   const getData = async () => {
     setLoading(true);
     try {
-      const items = await axios.get(`/api/journal/getjournal`, {});
+      const items = await axios.get(`/api/journal/getjournal/${user.id}`);
 
       setItems(items.data);
       setLoading(false);

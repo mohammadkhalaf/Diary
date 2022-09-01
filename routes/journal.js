@@ -11,26 +11,17 @@ router.post('/additem', async (req, res) => {
     res.status(400).send({ msg: err });
   }
 });
-router.get('/getjournal', async (req, res) => {
+router.get('/getjournal/:id', async (req, res) => {
+  console.log(req.params.id);
   try {
-    const data = await JournalModel.find();
+    const data = await JournalModel.find({ postedBy: req.params.id });
 
     res.send(data);
   } catch (err) {
     res.status(400).send({ msg: err });
   }
 });
-// router.get('/getsingleitem/:id', async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     const data = await JournalModel.find();
-//     const journals = data.filter((obj) => obj.postedBy === id);
-//     // console.log(journals.length);
-//     res.send(journals);
-//   } catch (err) {
-//     res.status(400).send(err);
-//   }
-// });
+
 router.get('/detailpage/:id', async (req, res) => {
   const { id } = req.params;
   try {

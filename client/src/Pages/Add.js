@@ -29,7 +29,7 @@ const Add = () => {
         title,
         description,
         content: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
-        postedBy: ' user._id',
+        postedBy: user.id,
       };
       await axios.post('/api/journal/additem', payload);
       toast('You have added successfully');

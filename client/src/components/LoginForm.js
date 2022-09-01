@@ -19,7 +19,7 @@ const Login = () => {
       console.log(user.data);
 
       toast('You are successfully logged in');
-      // localStorage.setItem('user', JSON.stringify(user.data));
+      localStorage.setItem('user', JSON.stringify(user.data));
       // navigate('/home');
       setLoading(false);
     } catch (err) {

@@ -43,6 +43,7 @@ router.post('/login', async (req, res) => {
       email: user.email,
       name: user.name,
       token: generateToken(id),
+      id,
     });
   } else {
     res.status(400).json({ msg: 'Invalid credentials' });
