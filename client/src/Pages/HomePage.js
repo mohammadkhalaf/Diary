@@ -27,8 +27,9 @@ const HomePage = () => {
   useEffect(() => {
     getData();
   }, []);
-  const removeHandler = () => {
-    console.log('remove');
+  const removeHandler = async (id) => {
+    await axios.delete(`/api/journal/delete/${id}`);
+    getData();
   };
 
   return (
@@ -64,13 +65,13 @@ const HomePage = () => {
                   <div className='flex  mt-2'>
                     <button
                       className='px-3 py-2 mr-4 bg-red rounded text-white pointer'
-                      onClick={removeHandler}
+                      onClick={() => removeHandler(item._id)}
                     >
                       Delete
                     </button>
                     <button
                       className='px-5 py-2 bg-primary rounded text-white pointer'
-                      // onClick={() => navigate(`/edit/${item._id}`)}
+                      onClick={() => navigate(`/edit/${item._id}`)}
                     >
                       Edit
                     </button>

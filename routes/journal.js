@@ -34,13 +34,28 @@ router.get('/detailpage/:id', async (req, res) => {
     res.status(400).send(err);
   }
 });
-router.post('/edit', async (req, res) => {
+router.put('/edit/:id', async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
   try {
-    const update = await JournalModel.findById(req.body.id);
+    let updated = await JournalModel.findById(id);
     if (updated) {
-      console.log(true);
+      updated = await JournalModel.findByIdAndUpdate(id, req.body);
     }
-    res.send('successfully');
+    console.log('ok');
+  } catch (err) {
+    console.log(err);
+  }
+});
+router.delete('/delete/:id', async (req, res) => {
+  const id = req.params.id;
+  console.log('you deelte this item' + id);
+  try {
+    let deleted = await JournalModel.findById(id);
+    if (deleted) {
+      updated = await JournalModel.findByIdAndDelete(id);
+    }
+    console.log('ok');
   } catch (err) {
     console.log(err);
   }

@@ -14,7 +14,7 @@ const LandingPage = () => {
     if (user) {
       navigate('/home');
     }
-  }, []);
+  }, [user, navigate]);
 
   return (
     <>

@@ -34,25 +34,6 @@ const Sidebar = () => {
         >
           Logout
         </Link>
-
-        {/* {navItems.map((item, index) => {
-          return item.title !== 'Logout' ? (
-            <Link
-              to={`${item.path}`}
-              className='text-gray-300 hover:bg-gray-50 pl-10 py-5 hover:text-gray-700'
-              key={item.index}
-            >
-              {item.title}
-            </Link>
-          ) : (
-            <span
-              className='text-gray-300 hover:bg-gray-50 pl-10 py-5 hover:text-gray-700 pointer'
-              onClick={logoutHandler}
-            >
-              Logout
-            </span>
-          );
-        })} */}
       </div>
     </div>
   );

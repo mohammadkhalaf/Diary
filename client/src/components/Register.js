@@ -15,7 +15,6 @@ const Register = () => {
         name,
       };
       const response = await axios.post('/api/users/register', payload);
-      console.log(response);
 
       toast('You have successfully registered, please login ');
     } catch (err) {

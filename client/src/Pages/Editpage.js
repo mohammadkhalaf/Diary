@@ -48,16 +48,14 @@ const Editpage = () => {
         title,
         description,
         content: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
-        id: id,
       };
-
-      await axios.post(`/api/journal/edit`, payload);
-      setLoading(false);
+      await axios.put(`/api/journal/edit/${id}`, payload);
       toast('You have edited successfully');
       navigate('/home');
     } catch (err) {
       toast('Something went wrong', 'danger');
     }
+    setLoading(false);
   };
   return (
     <Layout>
