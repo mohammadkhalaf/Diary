@@ -42,7 +42,7 @@ router.put('/edit/:id', async (req, res) => {
     if (updated) {
       updated = await JournalModel.findByIdAndUpdate(id, req.body);
     }
-    console.log('ok');
+    res.status(200).json({ msg: 'You have successfully edited' });
   } catch (err) {
     console.log(err);
   }
@@ -55,7 +55,7 @@ router.delete('/delete/:id', async (req, res) => {
     if (deleted) {
       updated = await JournalModel.findByIdAndDelete(id);
     }
-    console.log('ok');
+    res.status(200).json({ msg: 'You have deleted an article' });
   } catch (err) {
     console.log(err);
   }

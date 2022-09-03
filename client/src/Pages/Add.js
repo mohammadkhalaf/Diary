@@ -19,9 +19,9 @@ const Add = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
 
-  useEffect(() => {
-    console.log(convertToRaw(editorState.getCurrentContent()));
-  }, [editorState]);
+  // useEffect(() => {
+  //   console.log(convertToRaw(editorState.getCurrentContent()));
+  // }, [editorState]);
   const onSave = async () => {
     setLoading(true);
     try {

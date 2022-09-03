@@ -12,6 +12,7 @@ const HomePage = () => {
   const [term, setTerm] = useState('');
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
+  const [deleted, setDeleted] = useState(false);
 
   const getData = async () => {
     setLoading(true);
@@ -28,8 +29,11 @@ const HomePage = () => {
     getData();
   }, []);
   const removeHandler = async (id) => {
-    await axios.delete(`/api/journal/delete/${id}`);
-    getData();
+    try {
+      const { data } = await axios.delete(`/api/journal/delete/${id}`);
+      toast(data.msg);
+      getData();
+    } catch (error) {}
   };
 
   return (

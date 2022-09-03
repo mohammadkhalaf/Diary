@@ -16,11 +16,22 @@ const Editpage = () => {
   );
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('user'));
   const { id } = useParams();
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    let cancel = false;
+
+    if (cancel) {
+      setIsVisible(false);
+    }
+
+    return () => {
+      cancel = true;
+    };
+  }, []);
 
   const getData = async () => {
     setLoading(true);
@@ -49,8 +60,9 @@ const Editpage = () => {
         description,
         content: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
       };
-      await axios.put(`/api/journal/edit/${id}`, payload);
-      toast('You have edited successfully');
+      const { data } = await axios.put(`/api/journal/edit/${id}`, payload);
+
+      toast(data.msg);
       navigate('/home');
     } catch (err) {
       toast('Something went wrong', 'danger');

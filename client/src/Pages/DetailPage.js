@@ -24,7 +24,7 @@ const DetailPage = () => {
   useEffect(() => {
     getData();
   }, []);
-  console.log(item);
+
   return (
     <>
       <Layout>
