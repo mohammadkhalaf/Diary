@@ -16,7 +16,6 @@ const Login = () => {
         password,
       };
       const user = await axios.post('/api/users/login', payload);
-      console.log(user.data);
 
       toast('You are successfully logged in');
 
