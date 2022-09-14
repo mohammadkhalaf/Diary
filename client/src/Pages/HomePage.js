@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react/cjs/react.development';
+import { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import Loader from '../components/Loader';
 import { toast } from 'react-toastify';
@@ -12,7 +12,6 @@ const HomePage = () => {
   const [term, setTerm] = useState('');
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
-  const [deleted, setDeleted] = useState(false);
 
   const getData = async () => {
     setLoading(true);
