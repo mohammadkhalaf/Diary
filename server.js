@@ -4,6 +4,7 @@ const connectCB = require('./db/db');
 const journal = require('./routes/journal');
 const users = require('./routes/user');
 const path = require('path');
+const notFoundMiddleWare = require('./not-found');
 
 const app = express();
 
@@ -20,10 +21,7 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client/build/index.html'));
   });
 }
-app.get('*', (req, res) => {
-  res.send('wrong');
-});
-
+app.use(notFoundMiddleWare);
 connectCB();
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
