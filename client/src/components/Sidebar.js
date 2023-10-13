@@ -1,13 +1,20 @@
 import { Link, useNavigate } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({clickHandler}) => {
   const navigate = useNavigate();
   const logoutHandler = () => {
     localStorage.removeItem('user');
     navigate('/');
   };
+  const closeOverlay=()=>{
+   clickHandler()
+  }
   return (
-    <div className='bg-primary w-60 h-screen flex flex-col'>
+    <>
+    <div className='overlay' onClick={closeOverlay}>
+
+    </div>
+    <div className='fixed bg-primary w-60 h-screen flex flex-col z-10'>
       <div>
         <h1 className='text-3xl font-bold mt-10 ml-5 text-white '>My Diary</h1>
       </div>
@@ -34,6 +41,7 @@ const Sidebar = () => {
         </Link>
       </div>
     </div>
+    </>
   );
 };
 

@@ -7,10 +7,8 @@ const authMiddleware = async (req, res, next) => {
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
-    console.log('yes');
     try {
       const token = authHeader.split(' ')[1];
-      console.log(token);
       if (!token) {
         res.status(401).json({ msg: 'You are not authorized' });
       }

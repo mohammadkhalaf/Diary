@@ -10,11 +10,10 @@ const DetailPage = () => {
   const [loading, setLoading] = useState(false);
   const [item, setItem] = useState(null);
   const { id } = useParams();
-
   const getData = async () => {
     setLoading(true);
     try {
-      const items = await axios.get(`/api/journal/detailpage/${id}`);
+      const items = await axios.get(`/api/journals/detailpage/${id}`);
       setItem(items.data);
 
       setLoading(false);

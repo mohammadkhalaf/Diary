@@ -9,21 +9,21 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const login = async () => {
-    setLoading(true);
-    try {
-      const payload = {
-        email,
-        password,
-      };
-      const user = await axios.post('/api/users/login', payload);
-
-      toast('You are successfully logged in');
-
-      localStorage.setItem('user', JSON.stringify(user.data));
-      navigate('/home');
-      setLoading(false);
-    } catch (err) {
-      toast(err.response.data.msg);
+    if(password && email){
+      try {
+        const payload = {
+          email,
+          password,
+         };
+         const user = await axios.post('/api/users/login', payload);
+         toast('You are successfully logged in');
+ 
+       localStorage.setItem('user', JSON.stringify(user.data));
+       navigate('/home');
+       setLoading(false);
+     } catch (err) {
+       toast(err.response.data.msg);
+     }
     }
   };
   useEffect(() => {});
@@ -50,7 +50,7 @@ const Login = () => {
         <h1 className='text-6xl text-gray-300 mb-10'>Login</h1>
 
         <input
-          type='text'
+          type='email'
           value={email}
           className='border-2 h-10 w-full border-gray-300 px-5 bg-transparent mb-5 text-gray-500'
           placeholder='Email'

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -19,9 +19,6 @@ const Add = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
 
-  // useEffect(() => {
-  //   console.log(convertToRaw(editorState.getCurrentContent()));
-  // }, [editorState]);
   const onSave = async () => {
     setLoading(true);
     try {
@@ -31,13 +28,11 @@ const Add = () => {
         content: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
         postedBy: user.id,
       };
-      await axios.post('/api/journal/additem', payload);
+      await axios.post('/api/journals/additem', payload);
       toast('You have added successfully');
       setLoading(false);
-      // navigate('/home');
+       navigate('/home');
     } catch (err) {
-      console.log(err);
-      alert('wrong');
       toast('Something went wrong', 'danger');
     }
   };

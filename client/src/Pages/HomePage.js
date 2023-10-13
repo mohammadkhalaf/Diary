@@ -12,12 +12,10 @@ const HomePage = () => {
   const [term, setTerm] = useState('');
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
-
   const getData = async () => {
     setLoading(true);
     try {
-      const items = await axios.get(`/api/journal/getjournal/${user.id}`);
-
+      const items = await axios.get(`/api/journals/getjournal/${user.id}`);
       setItems(items.data);
       setLoading(false);
     } catch (err) {
@@ -27,14 +25,14 @@ const HomePage = () => {
   useEffect(() => {
     getData();
   }, []);
+
   const removeHandler = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/journal/delete/${id}`);
+      const { data } = await axios.delete(`/api/journals/delete/${id}`);
       toast(data.msg);
       getData();
     } catch (error) {}
   };
-
   return (
     <Layout>
       {loading && <Loader />}
@@ -54,7 +52,7 @@ const HomePage = () => {
         </h2>
       )}
       {items.length > 0 && (
-        <div className='grid grid-cols-2 sm:grid-cols-1 gap-5 mx-20 sm:mx-5 my-10'>
+        <div className='grid grid-cols-3 sm:grid-cols-1 gap-5 mx-20 sm:mx-5 my-10'>
           {items
             .filter((i) => i.title.includes(term))
             .map((item) => {
@@ -89,7 +87,7 @@ const HomePage = () => {
               );
             })}
         </div>
-      )}
+      )} 
     </Layout>
   );
 };

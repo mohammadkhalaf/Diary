@@ -1,18 +1,20 @@
 const express = require('express');
 const JournalModel = require('../models/Journal');
 const router = express.Router();
+router.get('/',(req,res)=>{
+  res.send('sdfsdf')
+})
 
 router.post('/additem', async (req, res) => {
   try {
     const newItem = new JournalModel(req.body);
     await newItem.save();
-    res.send('add intem');
+    res.send('item added');
   } catch (err) {
     res.status(400).send({ msg: err });
   }
 });
 router.get('/getjournal/:id', async (req, res) => {
-  console.log(req.params.id);
   try {
     const data = await JournalModel.find({ postedBy: req.params.id });
 
@@ -36,7 +38,6 @@ router.get('/detailpage/:id', async (req, res) => {
 });
 router.put('/edit/:id', async (req, res) => {
   const id = req.params.id;
-  console.log(id);
   try {
     let updated = await JournalModel.findById(id);
     if (updated) {
@@ -44,12 +45,12 @@ router.put('/edit/:id', async (req, res) => {
     }
     res.status(200).json({ msg: 'You have successfully edited' });
   } catch (err) {
-    console.log(err);
+    res.status(400).json({msg:'Bad request. Item not updated'})
   }
 });
 router.delete('/delete/:id', async (req, res) => {
   const id = req.params.id;
-  console.log('you deelte this item' + id);
+
   try {
     let deleted = await JournalModel.findById(id);
     if (deleted) {
@@ -57,7 +58,7 @@ router.delete('/delete/:id', async (req, res) => {
     }
     res.status(200).json({ msg: 'You have deleted an article' });
   } catch (err) {
-    console.log(err);
+    res.status(400).json({msg:'Bad request. Item not deleted'})
   }
 });
 module.exports = router;

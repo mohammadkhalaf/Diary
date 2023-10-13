@@ -13,7 +13,7 @@ const Layout = (props) => {
     <div className='layout flex w-ful h-full'>
       {showSidebar && (
         <div className='sidebar'>
-          <Sidebar />
+          <Sidebar  clickHandler={clickHandler}/>
         </div>
       )}
       <div className='w-full h-full'>

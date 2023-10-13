@@ -36,7 +36,7 @@ const Editpage = () => {
   const getData = async () => {
     setLoading(true);
     try {
-      const items = await axios.get(`/api/journal/detailpage/${id}`);
+      const items = await axios.get(`/api/journals/detailpage/${id}`);
 
       setTitle(items.data.title);
       setDescription(items.data.description);
@@ -60,7 +60,7 @@ const Editpage = () => {
         description,
         content: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
       };
-      const { data } = await axios.put(`/api/journal/edit/${id}`, payload);
+      const { data } = await axios.put(`/api/journals/edit/${id}`, payload);
 
       toast(data.msg);
       navigate('/home');
